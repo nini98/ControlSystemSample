@@ -1,18 +1,25 @@
 package com.example.controlsystemsample.controller.api;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.controlsystemsample.common.response.Response;
+import com.example.controlsystemsample.common.response.ResultCode;
 import com.example.controlsystemsample.dto.request.IndexRequestDTO;
 import com.example.controlsystemsample.dto.response.IndexResponseDTO;
+import com.example.controlsystemsample.service.IndexService;
 
-import jakarta.xml.ws.Response;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class IndexRestController {
 
-    @PostMapping("/test")
-    public Response<IndexResponseDTO> test(IndexRequestDTO request){
+    private final IndexService indexService;
 
+    @PostMapping("/test")
+    public Response<IndexResponseDTO> test(@RequestBody IndexRequestDTO params) throws Exception {
+        return Response.success(indexService.test(params));
     }
 }
