@@ -7,5 +7,5 @@ import com.example.controlsystemsample.dto.response.IndexResponseDTO;
 
 @Mapper
 public interface IndexMapper {
-	public IndexResponseDTO test(IndexRequestDTO params);
+	IndexResponseDTO test(IndexRequestDTO params);
 }

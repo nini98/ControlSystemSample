@@ -19,26 +19,26 @@ repositories {
 }
 
 dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
-    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
-    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services:3.3.0'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.24'
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0' //스프링부트 3.0 이상
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0' //스프링부트 3.0 이상
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1' //스프링부트 3.0 이상
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.0'
 
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'com.mysql:mysql-connector-j:8.3.0'
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.0'
+    testImplementation 'org.springframework.security:spring-security-test:6.3.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
 }
 
 tasks.named('test') {
