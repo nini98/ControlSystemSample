@@ -12,10 +12,4 @@ public class IndexController {
         model.addAttribute("testValue", "JAY JAY");
         return "index";
     }
-
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("testValue", "JAY JAY");
-        return "login";
-    }
 }

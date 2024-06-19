@@ -6,5 +6,6 @@ import com.example.controlsystemsample.model.User;
 
 @Mapper
 public interface UserMapper {
-	User findByUsername(String username);
+	// User findByUsername(String username);
+	User selectUser(String loginId);
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.controlsystemsample.enums.UserRole;
 import com.example.controlsystemsample.model.User;
 
 public class CustomUserDetails implements UserDetails {
@@ -18,7 +19,8 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority(user.getUserRole().name()));
+		// UserRole을 GrantedAuthority로 변환
+		return List.of(new SimpleGrantedAuthority(user.getRole().name()));
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return user.getUsername();
+		return user.getLoginId();
 	}
 
 	@Override
@@ -48,6 +50,6 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return "ACTIVE".equalsIgnoreCase(user.getStatus());
 	}
 }
