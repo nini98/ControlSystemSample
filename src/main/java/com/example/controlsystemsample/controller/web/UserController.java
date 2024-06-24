@@ -11,4 +11,10 @@ public class UserController {
 		// model.addAttribute("testValue", "JAY JAY");
 		return "login";
 	}
+
+	@GetMapping("/signup")
+	public String signup(Model model){
+		// model.addAttribute("testValue", "JAY JAY");
+		return "signup";
+	}
 }

@@ -8,7 +8,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignUpRequestDTO {
 	@NotBlank
-	private final String email;
+	private final String loginId;
 	@NotBlank
 	private final String password;
+	@NotBlank
+	private final String email;
+	@NotBlank
+	private final String phone;
+	@NotBlank
+	private final String name;
+	@NotBlank
+	private final String role;
 }

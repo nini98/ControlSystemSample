@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/common/header.jsp" %>
 
 <style>
@@ -39,28 +40,28 @@
 <%--            </div>--%>
 
             <!-- Submit button -->
-            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">로그인인</button>
 
             <!-- Register buttons -->
-            <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
-                <p>or sign up with:</p>
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                </button>
+<%--            <div class="text-center">--%>
+<%--                <p>Not a member? <a href="#!">Register</a></p>--%>
+<%--                <p>or sign up with:</p>--%>
+<%--                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">--%>
+<%--                    <i class="fab fa-facebook-f"></i>--%>
+<%--                </button>--%>
 
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                </button>
+<%--                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">--%>
+<%--                    <i class="fab fa-google"></i>--%>
+<%--                </button>--%>
 
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                </button>
+<%--                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">--%>
+<%--                    <i class="fab fa-twitter"></i>--%>
+<%--                </button>--%>
 
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                </button>
-            </div>
+<%--                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">--%>
+<%--                    <i class="fab fa-github"></i>--%>
+<%--                </button>--%>
+<%--            </div>--%>
         </form>
 
     </div>

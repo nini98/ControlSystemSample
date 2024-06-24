@@ -19,8 +19,6 @@ public class SecurityConfig {
 				authorizeRequests
 					.requestMatchers("/login", "/signup", "/css/**", "/js/**", "/WEB-INF/views/**").permitAll()
 					.anyRequest().authenticated()
-
-
 			)
 			.formLogin(formLogin ->
 				formLogin
