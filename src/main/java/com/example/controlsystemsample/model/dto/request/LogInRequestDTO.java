@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LogInRequestDTO {
 	@NotBlank
-	private final String email;
+	private final String loginId;
 	@NotBlank
 	private final String password;
 }

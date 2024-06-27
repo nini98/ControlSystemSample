@@ -69,7 +69,8 @@
         fetchUtil.post('/api/signup', signupData)
             .then(response => {
                 console.log("JAY TEST : " + response);
-                alert('회원가입 성공!');
+                alert('회원가입 되었습니다.');
+                location.href = "/login";
             })
             .catch(error => {
                 console.log(error.data);
