@@ -1,5 +1,16 @@
 const fetchUtil = {
-    // GET 요청
+
+    handleResponse: async (response) => {
+        const jsonData = await response.json();
+        if (!response.ok) {
+            const error = new Error('Network response was not ok');
+            error.header = jsonData.header;
+            error.data = jsonData.data;
+            throw error;
+        }
+        return jsonData;
+    },
+
     get: async (url) => {
         try {
             const response = await fetch(url, {
@@ -8,21 +19,12 @@ const fetchUtil = {
                     'Content-Type': 'application/json',
                 },
             });
-
-            if (!response.ok) {
-                console.log(JSON.stringify(response));
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            return data;
+            return await fetchUtil.handleResponse(response);
         } catch (error) {
-            console.error('Fetch GET error:', error);
             throw error;
         }
     },
 
-    // POST 요청
     post: async (url, body) => {
         try {
             const response = await fetch(url, {
@@ -32,21 +34,12 @@ const fetchUtil = {
                 },
                 body: JSON.stringify(body),
             });
-
-            if (!response.ok) {
-                console.log(JSON.stringify(response));
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            return data;
+            return await fetchUtil.handleResponse(response);
         } catch (error) {
-            console.error('Fetch POST error:', error);
             throw error;
         }
     },
 
-    // PUT 요청
     put: async (url, body) => {
         try {
             const response = await fetch(url, {
@@ -56,21 +49,12 @@ const fetchUtil = {
                 },
                 body: JSON.stringify(body),
             });
-
-            if (!response.ok) {
-                console.log(JSON.stringify(response));
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            return data;
+            return await fetchUtil.handleResponse(response);
         } catch (error) {
-            console.error('Fetch PUT error:', error);
             throw error;
         }
     },
 
-    // DELETE 요청
     delete: async (url) => {
         try {
             const response = await fetch(url, {
@@ -79,16 +63,8 @@ const fetchUtil = {
                     'Content-Type': 'application/json',
                 },
             });
-
-            if (!response.ok) {
-                console.log(JSON.stringify(response));
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            return data;
+            return await fetchUtil.handleResponse(response);
         } catch (error) {
-            console.error('Fetch DELETE error:', error);
             throw error;
         }
     },

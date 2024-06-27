@@ -1,4 +1,4 @@
-package com.example.controlsystemsample.dto.response;
+package com.example.controlsystemsample.model.dto.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

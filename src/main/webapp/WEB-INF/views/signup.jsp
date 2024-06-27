@@ -67,17 +67,13 @@
         };
 
         fetchUtil.post('/api/signup', signupData)
-            .then(data => {
-                console.log("JAY TEST : " + JSON.stringify(data))
-                if (data.header.resultCode === 'SUCCESS') {
-                    alert('회원가입 성공!');
-                } else {
-                    alert('회원가입 실패: ' + data.header.message);
-                }
+            .then(response => {
+                console.log("JAY TEST : " + response);
+                alert('회원가입 성공!');
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('회원가입 중 오류가 발생했습니다.');
+                console.log(error.data);
+                alert(error.header.resultMessage);
             });
 
 

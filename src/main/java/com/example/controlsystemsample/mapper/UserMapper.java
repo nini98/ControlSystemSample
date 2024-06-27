@@ -2,7 +2,7 @@ package com.example.controlsystemsample.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.controlsystemsample.dto.request.SignUpRequestDTO;
+import com.example.controlsystemsample.model.dto.request.SignUpRequestDTO;
 import com.example.controlsystemsample.model.User;
 
 @Mapper

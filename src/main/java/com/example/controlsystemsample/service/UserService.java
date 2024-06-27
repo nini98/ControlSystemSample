@@ -1,9 +1,11 @@
 package com.example.controlsystemsample.service;
 
+import com.example.controlsystemsample.common.exception.ControlSystemException;
+import com.example.controlsystemsample.common.response.ResultCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.controlsystemsample.dto.request.SignUpRequestDTO;
+import com.example.controlsystemsample.model.dto.request.SignUpRequestDTO;
 import com.example.controlsystemsample.mapper.UserMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class UserService {
 			params.getName(),
 			params.getRole()
 		);
+
 		userMapper.signup(newSignUpRequestDTO);
 	}
 }
