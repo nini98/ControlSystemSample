@@ -15,14 +15,4 @@ public enum UserRole {
 
 	public String getCode(){return this.code;}
 	public String getDescription(){return this.description;}
-
-	public static UserRole fromCode(String code) {
-		for (UserRole role : UserRole.values()) {
-			if (role.getCode().equals(code)) {
-				return role;
-			}
-		}
-		throw new IllegalArgumentException("No enum constant for code: " + code);
-	}
-
 }

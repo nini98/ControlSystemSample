@@ -19,18 +19,30 @@ public class UserRoleEnumTypeHandler extends BaseTypeHandler<UserRole> {
     @Override
     public UserRole getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String code = rs.getString(columnName);
-        return UserRole.fromCode(code);
+        return getCodeEnum(code);
     }
 
     @Override
     public UserRole getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         String code = rs.getString(columnIndex);
-        return UserRole.fromCode(code);
+        return getCodeEnum(code);
     }
 
     @Override
     public UserRole getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         String code = cs.getString(columnIndex);
-        return UserRole.fromCode(code);
+        return getCodeEnum(code);
+    }
+
+    private UserRole getCodeEnum(String code) {
+        switch (code) {
+            case "0":
+                return UserRole.ADMIN;
+            case "1":
+                return UserRole.USER;
+            case "2":
+                return UserRole.GUEST;
+        }
+        return null;
     }
 }

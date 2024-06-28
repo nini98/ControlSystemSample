@@ -13,13 +13,13 @@
         <form action="/login" method="post">
             <!-- LogIn ID input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="username" class="form-control" />
-                <label class="form-label" for="username">LogIn ID</label>
+                <input type="text" id="loginId" name="loginId"  class="form-control" required/>
+                <label class="form-label" for="loginId">LogIn ID</label>
             </div>
 
             <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="password" class="form-control" />
+                <input type="password" id="password" name="password"  class="form-control" required/>
                 <label class="form-label" for="password">Password</label>
             </div>
 

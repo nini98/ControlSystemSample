@@ -29,3 +29,11 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.web: DEBUG
+#    com.example.controlsystemsample: TRACE
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

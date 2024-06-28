@@ -3,6 +3,7 @@ package com.example.controlsystemsample.security;
 import java.util.Collection;
 import java.util.List;
 
+import com.example.controlsystemsample.enums.UserStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,6 +50,6 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return "ACTIVE".equalsIgnoreCase(user.getStatus());
+		return UserStatus.ACTIVE.equals(user.getStatus());
 	}
 }

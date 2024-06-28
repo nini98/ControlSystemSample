@@ -2,6 +2,7 @@ package com.example.controlsystemsample.model;
 
 import com.example.controlsystemsample.enums.UserRole;
 
+import com.example.controlsystemsample.enums.UserStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,5 +18,5 @@ public class User {
 	private String phone;
 	private String name;
 	private UserRole role;
-	private String status;
+	private UserStatus status;
 }
