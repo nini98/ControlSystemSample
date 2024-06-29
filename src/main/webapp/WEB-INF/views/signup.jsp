@@ -47,7 +47,7 @@
             </div>
 
             <!-- Submit button -->
-            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" onclick="signUp()">TEST 버튼</button>
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" onclick="signUp()">회원가입</button>
         </div>
 
     </div>
@@ -67,8 +67,7 @@
         };
 
         fetchUtil.post('/api/signup', signupData)
-            .then(response => {
-                console.log("JAY TEST : " + response);
+            .then(() => {
                 alert('회원가입 되었습니다.');
                 location.href = "/login";
             })

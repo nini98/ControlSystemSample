@@ -68,4 +68,63 @@ const fetchUtil = {
             throw error;
         }
     },
+
+    getUrlEncoded: async (url) => {
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            });
+            return await fetchUtil.handleResponse(response);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    postUrlEncoded: async (url, body) => {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(body),
+            });
+            return await fetchUtil.handleResponse(response);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    putUrlEncoded: async (url, body) => {
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(body),
+            });
+            return await fetchUtil.handleResponse(response);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteUrlEncoded: async (url, body) => {
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(body),
+            });
+            return await fetchUtil.handleResponse(response);
+        } catch (error) {
+            throw error;
+        }
+    },
 };

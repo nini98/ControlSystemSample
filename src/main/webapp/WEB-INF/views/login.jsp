@@ -10,7 +10,7 @@
 
 <div class="page-wrapper">
     <div class="login-form-wrapper">
-        <form action="/login" method="post">
+        <form id="loginForm">
             <!-- LogIn ID input -->
             <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" id="loginId" name="loginId"  class="form-control" required/>
@@ -29,6 +29,27 @@
 
     </div>
 </div>
+
+<script>
+
+    $('#loginForm').submit(function(e) {
+        e.preventDefault();
+
+        const loginId = $('#loginId').val();
+        const password = $('#password').val();
+        const payload = { loginId, password };
+
+        fetchUtil.postUrlEncoded('/login', payload)
+            .then(() => {
+                location.href = '/';
+            })
+            .catch(error => {
+                console.log(error.data);
+                alert(error.header.resultMessage);
+            });
+    });
+
+</script>
 
 
 
