@@ -11,4 +11,6 @@ public interface UserMapper {
 	User selectUser(String loginId);
 
 	void signup(SignUpRequestDTO params);
+
+	void updateLoginTryCnt(String loginId);
 }

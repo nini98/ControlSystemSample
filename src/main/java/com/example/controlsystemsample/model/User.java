@@ -19,4 +19,6 @@ public class User {
 	private String name;
 	private UserRole role;
 	private UserStatus status;
+	private int loginTryCnt;
+	private String blockYn;
 }

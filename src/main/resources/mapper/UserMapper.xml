@@ -11,6 +11,8 @@
         <result property="name" column="NAME"/>
         <result property="role" column="ROLE" typeHandler="com.example.controlsystemsample.typehandler.UserRoleEnumTypeHandler"/>
         <result property="status" column="STATUS" typeHandler="com.example.controlsystemsample.typehandler.UserStatusEnumTypeHandler"/>
+        <result property="loginTryCnt" column="LOGIN_TRY_CNT"/>
+        <result property="blockYn" column="BLOCK_YN"/>
     </resultMap>
 
     <insert id="signup" parameterType="SignUpRequestDTO">
@@ -22,8 +24,8 @@
              NAME,
              ROLE,
              STATUS,
-             INSERT_DATE,
-             UPDATE_DATE)
+             LOGIN_TRY_CNT,
+             BLOCK_YN)
         VALUES (#{loginId},
                 #{password},
                 #{email},
@@ -31,8 +33,8 @@
                 #{name},
                 #{role},
                 '00',
-                NOW(),
-                NOW()
+                0,
+                'N'
                )
     </insert>
 
@@ -58,9 +60,22 @@
                NAME,
                ROLE,
                STATUS,
-               INSERT_DATE,
-               UPDATE_DATE
+               LOGIN_TRY_CNT,
+               BLOCK_YN
         FROM user
         WHERE LOGIN_ID = #{loginId}
     </select>
+
+    <update id="updateLoginTryCnt" parameterType="String">
+        UPDATE user
+        SET LOGIN_TRY_CNT = CASE
+            WHEN LOGIN_TRY_CNT <![CDATA[<]]> 5 THEN LOGIN_TRY_CNT + 1
+            ELSE LOGIN_TRY_CNT
+        END,
+            BLOCK_YN = CASE
+            WHEN LOGIN_TRY_CNT >= 5 THEN 'Y'
+            ELSE BLOCK_YN
+        END
+        WHERE LOGIN_ID = #{loginId}
+    </update>
 </mapper>
