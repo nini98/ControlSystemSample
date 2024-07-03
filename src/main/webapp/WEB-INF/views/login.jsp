@@ -9,25 +9,28 @@
 </style>
 
 <div class="page-wrapper">
-    <div class="login-form-wrapper">
-        <form id="loginForm">
-            <!-- LogIn ID input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="loginId" name="loginId"  class="form-control" required/>
-                <label class="form-label" for="loginId">LogIn ID</label>
-            </div>
+    <div class="page-content">
+        <div class="login-form-wrapper">
+            <form id="loginForm">
+                <!-- LogIn ID input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" id="loginId" name="loginId"  class="form-control" required/>
+                    <label class="form-label" for="loginId">LogIn ID</label>
+                </div>
 
-            <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="password" name="password"  class="form-control" required/>
-                <label class="form-label" for="password">Password</label>
-            </div>
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="password" name="password"  class="form-control" required/>
+                    <label class="form-label" for="password">Password</label>
+                </div>
 
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">로그인</button>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">로그인</button>
 
-        </form>
+            </form>
 
+        </div>
     </div>
+
 </div>
 
 <script>

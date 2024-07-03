@@ -66,7 +66,7 @@
             role: $('#role').val()
         };
 
-        fetchUtil.post('/api/signup', signupData)
+        fetchUtil.postJson('/api/signup', signupData)
             .then(() => {
                 alert('회원가입 되었습니다.');
                 location.href = "/login";

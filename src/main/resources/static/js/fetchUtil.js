@@ -11,21 +11,8 @@ const fetchUtil = {
         return jsonData;
     },
 
-    get: async (url) => {
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            return await fetchUtil.handleResponse(response);
-        } catch (error) {
-            throw error;
-        }
-    },
 
-    post: async (url, body) => {
+    postJson: async (url, body) => {
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -40,7 +27,7 @@ const fetchUtil = {
         }
     },
 
-    put: async (url, body) => {
+    putJson: async (url, body) => {
         try {
             const response = await fetch(url, {
                 method: 'PUT',
@@ -55,13 +42,14 @@ const fetchUtil = {
         }
     },
 
-    delete: async (url) => {
+    deleteJson: async (url, body) => {
         try {
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify(body),
             });
             return await fetchUtil.handleResponse(response);
         } catch (error) {
@@ -69,12 +57,13 @@ const fetchUtil = {
         }
     },
 
-    getUrlEncoded: async (url) => {
+    getUrlEncoded: async (url, params) => {
         try {
-            const response = await fetch(url, {
+            const queryString = new URLSearchParams(params).toString();
+            const response = await fetch(`${url}?${queryString}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
             });
             return await fetchUtil.handleResponse(response);

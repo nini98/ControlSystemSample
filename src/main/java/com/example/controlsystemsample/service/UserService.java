@@ -26,6 +26,6 @@ public class UserService {
 			params.getRole()
 		);
 
-		userMapper.signup(newSignUpRequestDTO);
+		userMapper.insertUser(newSignUpRequestDTO);
 	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.controlsystemsample.mapper.DataTablePageMapper">
+
+    <select id="selectUserData1List" parameterType="UserData1ListRequestDTO" resultType="UserData1ListResponseDTO">
+        SELECT ID,
+               COLUMN_1,
+               COLUMN_2,
+               COLUMN_3,
+               COLUMN_4,
+               COLUMN_5,
+               COLUMN_6
+        FROM user_data_1
+        WHERE DELETE_YN = 'N'
+          <if test="column1 != null and !column1.isEmpty()">
+            AND COLUMN_1 = #{column1}
+          </if>
+          <if test="column2 != null and !column2.isEmpty()">
+            AND COLUMN_2 = #{column2}
+          </if>
+    </select>
+</mapper>

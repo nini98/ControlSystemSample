@@ -10,7 +10,7 @@ public interface UserMapper {
 	// User findByUsername(String username);
 	User selectUser(String loginId);
 
-	void signup(SignUpRequestDTO params);
+	void insertUser(SignUpRequestDTO params);
 
 	void updateLoginTryCnt(String loginId);
 }
