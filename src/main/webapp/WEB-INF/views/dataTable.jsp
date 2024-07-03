@@ -51,6 +51,7 @@
         <br/>
         <button type="button" onclick="dataTable.searchTable()">데이터 조회</button>
         <button type="button" onclick="dataTable.searchReset()">검색 조건 초기화</button>
+        <button type="button" onclick="downloadExcel()">Excel 다운로드</button>
 
     </div>
 </div>
@@ -151,6 +152,34 @@
 
     // Length menu를 처음에는 숨긴다.
     $('.dt-length').addClass('hidden-length-menu');
+
+    const downloadExcel = async () => {
+        const params = {
+            column1: $('#searchColumn1').val(),
+            column2: $('#searchColumn2').val(),
+            excelHeader: JSON.stringify([
+                { label: "컬럼 1", field: "column1" },
+                { label: "컬럼 2", field: "column2" },
+                { label: "컬럼 3", field: "column3" },
+                { label: "컬럼 4", field: "column4" },
+                { label: "컬럼 5", field: "column5" },
+                { label: "컬럼 6", field: "column6" }
+            ])
+        };
+
+        try {
+            const blob = await fetchUtil.getBlob('/api/user-data-1/excel/download', params);
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } catch (error) {
+            console.error('Error downloading Excel file:', error);
+        }
+    }
 
 
 </script>

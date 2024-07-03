@@ -116,4 +116,20 @@ const fetchUtil = {
             throw error;
         }
     },
+
+    getBlob: async (url, params) => {
+        try {
+            const queryString = new URLSearchParams(params).toString();
+            const response = await fetch(`${url}?${queryString}`, {
+                method: 'GET'
+            });
+            if (!response.ok) {
+                const error = new Error('Network response was not ok');
+                throw error;
+            }
+            return response.blob();
+        } catch (error) {
+            throw error;
+        }
+    },
 };

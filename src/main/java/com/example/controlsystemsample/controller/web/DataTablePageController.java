@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DataTablePageController {
 	@GetMapping("/data-table")
-	public String login(Model model){
+	public String goDataTablePage(Model model){
 		return "dataTable";
 	}
 }
