@@ -7,6 +7,22 @@
         width: 300px;
     }
 
+    /* dataTable의 css를 직접 조작하는 부분 - START */
+
+    /* pagenation과 lengthMenu를 한줄로 보여주기 위함 */
+    .bottom{display: flex;flex-direction: row;justify-content: center;}
+
+    /* lengthMenu도 pagenation 처럼 데이터가 렌더링 되었을 때만 보이도록 하기 위함 */
+    .hidden-length-menu {display: none;}
+    .visible-length-menu {display: block;}
+
+    /* lengthMenu와 pagenation의 순서를 조작하기 위함 */
+    .dt-length{order : 1;}
+    .dt-paging {order : 0;}
+
+    /* dataTable의 css를 직접 조작하는 부분 - END */
+
+
 </style>
 
 <div class="page-wrapper">
@@ -25,7 +41,7 @@
                     <tbody></tbody>
                 </table>
                 <div class="mt-2">
-                        검색결과 : <strong id="search-data-count">0</strong>건
+                    검색결과 : <strong id="search-data-count">0</strong>건
                 </div>
             </div>
         </div>
@@ -66,9 +82,17 @@
                                 data: response.data.data
                             });
                             $('#search-data-count').text(response.data.totalRecords);
+                            $('.dt-length').removeClass('hidden-length-menu').addClass('visible-length-menu');
                         } catch (error) {
                             console.error('Error fetching data:', error);
                         }
+                    }
+                },
+                drawCallback: function(settings) {
+                    if (settings.json && settings.json.data.length > 0) {
+                        $('.dt-length').removeClass('hidden-length-menu').addClass('visible-length-menu');
+                    } else {
+                        $('.dt-length').removeClass('visible-length-menu').addClass('hidden-length-menu');
                     }
                 }
             });
@@ -94,6 +118,7 @@
             this.searchInitiated = false;
             this.tableInit.clear().draw();
             $('#search-data-count').text(0);
+            $('.dt-length').removeClass('visible-length-menu').addClass('hidden-length-menu');
         }
     }
 
@@ -112,16 +137,21 @@
             { title: "컬럼 5", data: 'column5', width: "100px", className: "dt-center" },
             { title: "컬럼 6", data: 'column6', width: "100px", className: "dt-left" }
         ],
+        dom: '<"top"i>rt<"bottom"lp><"clear">',
         language: {
             emptyTable : "데이터가 없습니다.",
-            lengthMenu : '<select>' +
-                                '<option value="10">10</option>' +
-                                '<option value="25">25</option>' +
-                                '<option value="50">50</option>' +
-                                '<option value="100">100</option>' +
-                                '</select>'
+            lengthMenu : '<select class="form-select">' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="100">100</option>' +
+                '</select>'
         }
     });
+
+    // Length menu를 처음에는 숨긴다.
+    $('.dt-length').addClass('hidden-length-menu');
+
 
 </script>
 
