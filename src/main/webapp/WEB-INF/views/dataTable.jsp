@@ -113,7 +113,13 @@
             { title: "컬럼 6", data: 'column6', width: "100px", className: "dt-left" }
         ],
         language: {
-            emptyTable: "데이터가 없습니다."
+            emptyTable : "데이터가 없습니다.",
+            lengthMenu : '<select>' +
+                                '<option value="10">10</option>' +
+                                '<option value="25">25</option>' +
+                                '<option value="50">50</option>' +
+                                '<option value="100">100</option>' +
+                                '</select>'
         }
     });
 
