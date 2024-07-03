@@ -18,5 +18,18 @@
           <if test="column2 != null and !column2.isEmpty()">
             AND COLUMN_2 = #{column2}
           </if>
+        LIMIT #{start}, #{length}
+    </select>
+
+    <select id="selectCountUserData1List" parameterType="UserData1ListRequestDTO" resultType="int">
+        SELECT COUNT(*)
+        FROM user_data_1
+        WHERE DELETE_YN = 'N'
+        <if test="column1 != null and !column1.isEmpty()">
+            AND COLUMN_1 = #{column1}
+        </if>
+        <if test="column2 != null and !column2.isEmpty()">
+            AND COLUMN_2 = #{column2}
+        </if>
     </select>
 </mapper>

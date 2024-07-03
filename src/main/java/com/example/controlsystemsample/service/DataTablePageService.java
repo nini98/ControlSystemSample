@@ -19,4 +19,8 @@ public class DataTablePageService {
 	public List<UserData1ListResponseDTO> getUserData1List(UserData1ListRequestDTO params){
 		return dataTablePageMapper.selectUserData1List(params);
 	};
+
+	public int getCountUserData1List(UserData1ListRequestDTO params){
+		return dataTablePageMapper.selectCountUserData1List(params);
+	}
 }

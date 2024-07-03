@@ -11,4 +11,6 @@ import com.example.controlsystemsample.model.dto.response.UserData1ListResponseD
 public interface DataTablePageMapper {
 
 	List<UserData1ListResponseDTO> selectUserData1List(UserData1ListRequestDTO params);
+
+	int selectCountUserData1List(UserData1ListRequestDTO params);
 }
