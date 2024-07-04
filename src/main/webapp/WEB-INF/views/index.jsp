@@ -13,12 +13,17 @@
         <div>HELLO WORLD</div>
         <br>
         <button onclick="moveToDataTablePage()">DATA TABLE TEST PAGE</button>
+        <button onclick="moveToRealTimeChartPage()">REAL-TIME CHART PAGE</button>
     </div>
 </div>
 
 <script>
     const moveToDataTablePage = () => {
         location.href = "/data-table";
+    }
+
+    const moveToRealTimeChartPage = () => {
+        location.href = "/realtime-chart";
     }
 </script>
 
