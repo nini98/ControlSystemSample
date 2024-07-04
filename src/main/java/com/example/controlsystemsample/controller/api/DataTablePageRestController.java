@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.controlsystemsample.common.response.Response;
 import com.example.controlsystemsample.model.dto.request.UserData1ListExcelRequestDTO;
 import com.example.controlsystemsample.model.dto.request.UserData1ListRequestDTO;
+import com.example.controlsystemsample.model.dto.request.UserData2ListRequestDTO;
 import com.example.controlsystemsample.model.dto.response.UserData1ListResponseDTO;
 import com.example.controlsystemsample.model.dto.response.UserData1ListResponseWrapperDTO;
+import com.example.controlsystemsample.model.dto.response.UserData2ListResponseDTO;
+import com.example.controlsystemsample.model.dto.response.UserData2ListResponseWrapperDTO;
 import com.example.controlsystemsample.service.DataTablePageService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,6 +43,14 @@ public class DataTablePageRestController {
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		response.setHeader("Content-Disposition", "attachment; filename=" + params.getFileName());
 		response.getOutputStream().write(excelData);
+	}
+
+	@GetMapping("/user-data-2")
+	public Response<UserData2ListResponseWrapperDTO> getUserData2List(@ModelAttribute UserData2ListRequestDTO params){
+		List<UserData2ListResponseDTO> result = dataTablePageService.getUserData2List(params);
+		int totalRecords = dataTablePageService.getCountUserData2List(params);
+
+		return Response.success(new UserData2ListResponseWrapperDTO(params.getDraw(), totalRecords, result));
 	}
 
 }

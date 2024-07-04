@@ -10,4 +10,9 @@ public class DataTablePageController {
 	public String goDataTablePage(Model model){
 		return "dataTable";
 	}
+
+	@GetMapping("/data-table-2")
+	public String goDataTable2Page(Model model){
+		return "dataTable2";
+	}
 }

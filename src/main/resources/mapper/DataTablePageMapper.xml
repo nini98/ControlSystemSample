@@ -50,4 +50,38 @@
             AND COLUMN_2 = #{column2}
         </if>
     </select>
+
+    <select id="selectUserData2List" parameterType="UserData2ListRequestDTO" resultType="UserData2ListResponseDTO">
+        SELECT ID,
+        TEST_COLUMN_1,
+        TEST_COLUMN_2,
+        TEST_COLUMN_3,
+        TEST_COLUMN_4,
+        INSERT_DATE,
+        UPDATE_DATE
+        FROM user_data_2
+        WHERE DELETE_YN = 'N'
+        <if test="testColumn1 != null and !testColumn1.isEmpty()">
+            AND TEST_COLUMN_1 = #{column1}
+        </if>
+        <if test="testColumn2 != null and !testColumn2.isEmpty()">
+            AND TEST_COLUMN_2 = #{column2}
+        </if>
+        BETWEEN INSERT_DATE #{startDate} AND #{endDate}
+        LIMIT #{start}, #{length}
+    </select>
+
+    <select id="selectCountUserData2List" parameterType="UserData2ListRequestDTO" resultType="int">
+        SELECT COUNT(*)
+        FROM user_data_2
+        WHERE DELETE_YN = 'N'
+        <if test="testColumn1 != null and !testColumn1.isEmpty()">
+            AND TEST_COLUMN_1 = #{column1}
+        </if>
+        <if test="testColumn2 != null and !testColumn2.isEmpty()">
+            AND TEST_COLUMN_2 = #{column2}
+        </if>
+        BETWEEN INSERT_DATE #{startDate} AND #{endDate}
+        LIMIT #{start}, #{length}
+    </select>
 </mapper>

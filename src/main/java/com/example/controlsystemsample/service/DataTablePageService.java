@@ -11,7 +11,9 @@ import com.example.controlsystemsample.common.util.ExcelUtil;
 import com.example.controlsystemsample.mapper.DataTablePageMapper;
 import com.example.controlsystemsample.model.dto.request.UserData1ListExcelRequestDTO;
 import com.example.controlsystemsample.model.dto.request.UserData1ListRequestDTO;
+import com.example.controlsystemsample.model.dto.request.UserData2ListRequestDTO;
 import com.example.controlsystemsample.model.dto.response.UserData1ListResponseDTO;
+import com.example.controlsystemsample.model.dto.response.UserData2ListResponseDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,5 +46,13 @@ public class DataTablePageService {
 		// List<Map<String, Object>> data = dataTablePageMapper.selectDataForExcel(params);
 
 		return ExcelUtil.createExcel(excelHeaders, excelData);
+	}
+
+	public List<UserData2ListResponseDTO> getUserData2List(UserData2ListRequestDTO params){
+		return dataTablePageMapper.selectUserData2List(params);
+	};
+
+	public int getCountUserData2List(UserData2ListRequestDTO params){
+		return dataTablePageMapper.selectCountUserData2List(params);
 	}
 }
