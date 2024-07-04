@@ -11,4 +11,6 @@ public class UserData1ListExcelRequestDTO {
 	private final String column2;
 	@NotBlank
 	private final String excelHeader;
+	@NotBlank
+	private final String fileName;
 }

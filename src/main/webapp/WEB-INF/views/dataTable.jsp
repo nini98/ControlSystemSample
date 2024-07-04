@@ -164,7 +164,8 @@
                 { label: "컬럼 4", field: "column4" },
                 { label: "컬럼 5", field: "column5" },
                 { label: "컬럼 6", field: "column6" }
-            ])
+            ]),
+            fileName: 'my_data.xlsx'
         };
 
         try {
@@ -172,7 +173,7 @@
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'data.xlsx';
+            a.download = params.fileName;
             document.body.appendChild(a);
             a.click();
             a.remove();

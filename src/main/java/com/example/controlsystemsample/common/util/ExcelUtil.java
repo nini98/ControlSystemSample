@@ -16,13 +16,9 @@ public class ExcelUtil {
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet("Sheet1");
 
-		// Create header rows
-		createHeader(sheet, headers, workbook);
+		createHeader(sheet, headers);
+		createData(sheet, headers, data);
 
-		// Create data rows
-		createData(sheet, data);
-
-		// Write the workbook to a byte array
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		workbook.write(outputStream);
 		workbook.close();
@@ -30,28 +26,27 @@ public class ExcelUtil {
 		return outputStream.toByteArray();
 	}
 
-	private static void createHeader(XSSFSheet sheet, List<Map<String, Object>> headers, XSSFWorkbook workbook) {
-		int rowNum = 0;
-		for (Map<String, Object> headerRow : headers) {
+	private static void createHeader(XSSFSheet sheet, List<Map<String, Object>> headers) {
+		Row headerRow = sheet.createRow(0); // Create header row at the first row (index 0)
+		int colNum = 0;
+		for (Map<String, Object> header : headers) {
+			Cell cell = headerRow.createCell(colNum++);
+			cell.setCellValue(header.get("label").toString());
+		}
+	}
+
+	private static void createData(XSSFSheet sheet, List<Map<String, Object>> headers, List<Map<String, Object>> data) {
+		int rowNum = 1; // Start data rows from the second row (index 1)
+		for (Map<String, Object> rowData : data) {
 			Row row = sheet.createRow(rowNum++);
 			int colNum = 0;
-			for (Map.Entry<String, Object> header : headerRow.entrySet()) {
+			for (Map<String, Object> header : headers) {
+				String fieldName = header.get("field").toString();
 				Cell cell = row.createCell(colNum++);
-				cell.setCellValue(header.getValue().toString());
-				// Apply style if needed
+				Object value = rowData.get(fieldName);
+				cell.setCellValue(value != null ? value.toString() : "");
 			}
 		}
 	}
 
-	private static void createData(XSSFSheet sheet, List<Map<String, Object>> data) {
-		int rowNum = sheet.getLastRowNum() + 1;
-		for (Map<String, Object> rowData : data) {
-			Row row = sheet.createRow(rowNum++);
-			int colNum = 0;
-			for (String key : rowData.keySet()) {
-				Cell cell = row.createCell(colNum++);
-				cell.setCellValue(rowData.get(key).toString());
-			}
-		}
-	}
 }

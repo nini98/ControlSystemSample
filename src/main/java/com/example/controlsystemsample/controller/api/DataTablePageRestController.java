@@ -34,21 +34,11 @@ public class DataTablePageRestController {
 	}
 
 	@GetMapping("/user-data-1/excel/download")
-	public void downloadExcel(@ModelAttribute UserData1ListExcelRequestDTO params, HttpServletResponse response
-		// HttpServletResponse response,
-		// @RequestParam("headers") String headersJson,
-		// @RequestParam Map<String, String> params
-	) throws IOException {
-
-		// List<Map<String, Object>> headers = parseHeaders(headersJson); // JSON 문자열을 파싱하여 헤더 리스트를 반환하는 로직을 구현하세요
-		// byte[] excelData = dataTablePageService.generateExcel(params, headers);
-
-		System.out.println("JAY TEST :1: " + params.getExcelHeader());
-
+	public void downloadExcel(@ModelAttribute UserData1ListExcelRequestDTO params, HttpServletResponse response) throws IOException {
 		byte[] excelData = dataTablePageService.generateExcel(params);
 
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		response.setHeader("Content-Disposition", "attachment; filename=data.xlsx");
+		response.setHeader("Content-Disposition", "attachment; filename=" + params.getFileName());
 		response.getOutputStream().write(excelData);
 	}
 
