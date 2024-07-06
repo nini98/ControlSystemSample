@@ -22,6 +22,10 @@
 
     /* dataTable의 css를 직접 조작하는 부분 - END */
 
+    .custom-modal {
+        width: 1000px !important;
+    }
+
 
 </style>
 
@@ -62,6 +66,70 @@
         <button type="button" onclick="dataTable.searchTable()">데이터 조회</button>
         <button type="button" onclick="dataTable.searchReset()">검색 조건 초기화</button>
 <%--        <button type="button" onclick="downloadExcel()">Excel 다운로드</button>--%>
+
+
+
+        <!-- 변경 모달 -->
+        <div class="modal modal-xl" id="modifyUserData2Modal" tabindex="-1" aria-labelledby="modifyUserData2Modal" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered custom-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">User Data 2 테이블 정보 변경</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="routeFormModify">
+                            <table class="table border-top">
+                                <colgroup>
+                                    <col style="width: 90px" />
+                                    <col style="width: 200px" />
+                                    <col style="width: 90px" />
+                                    <col style="width: 200px" />
+                                    <col style="width: 90px" />
+                                    <col style="width: 200px" />
+                                </colgroup>
+
+                                <tbody>
+                                <tr>
+                                    <th>TEST COLUMN 1</th>
+                                    <td>
+                                        <input class="form-control" name="modifyTestColumn1" id="modifyTestColumn1" placeholder="TEST COLUMN 1을 입력하세요." disabled/>
+                                    </td>
+                                    <th>TEST COLUMN 2</th>
+                                    <td>
+                                        <input class="form-control" name="modifyTestColumn2" id="modifyTestColumn2" placeholder="TEST COLUMN 2을 입력하세요." disabled/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>TEST COLUMN 3</th>
+                                    <td>
+                                        <input class="form-control" name="modifyTestColumn3" id="modifyTestColumn3" placeholder="TEST COLUMN 3을 입력하세요." disabled/>
+                                    </td>
+                                    <th>TEST COLUMN 4</th>
+                                    <td>
+                                        <input class="form-control" name="modifyTestColumn4" id="modifyTestColumn4" placeholder="TEST COLUMN 4을 입력하세요." disabled/>
+                                    </td>
+                                </tr>
+                                <input type="hidden" id="modifyUserData2Id" name="modifyUserData2Id" />
+
+                                </tbody>
+                            </table>
+                            <div class="row">
+                            </div>
+                            <div class="mt-2">
+                                <div class="card-footer text-center">
+                                    <button type="button" class="btn btn-primary btn" onclick="modifyUserData2Config.modifyUserData2()">
+                                        변경
+                                    </button>
+                                    <button type="button" class="btn btn-secondary custom-width-button" data-bs-dismiss="modal">취소</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>
@@ -249,7 +317,21 @@
             { title: "컬럼 3", data: 'testColumn3', width: "100px", className: "dt-center" },
             { title: "컬럼 4", data: 'testColumn4', width: "100px", className: "dt-center" },
             { title: "생성일", data: 'insertDate', width: "100px", className: "dt-center" },
-            { title: "변경일", data: 'updateDate', width: "100px", className: "dt-center" }
+            { title: "변경일", data: 'updateDate', width: "100px", className: "dt-center" },
+            { title: "id", data: 'id', width: "100px", className: "dt-center", bVisible: false },
+        ],
+        createdRow (row, data) {
+            // 클래스설정하기
+            // $(row).addClass($statusUtil.qaStatusData(data[6]).className)
+        },
+        columnDefs : [
+            {
+                targets: 0,
+                data: 'testColumn1',
+                render: function(data, type, row) {
+                    return `<a href="#" onclick="modifyUserData2Config.openModal('\${row.testColumn1}', '\${row.testColumn2}', '\${row.testColumn3}', '\${row.testColumn4}', '\${row.id}')">\${data}</a>`;
+                }
+            }
         ],
         dom: '<"top"i>rt<"bottom"lp><"clear">',
         language: {
@@ -294,6 +376,54 @@
             console.error('Error downloading Excel file:', error);
         }
     }
+
+
+
+
+    const modifyUserData2Config = {
+        modalTarget : document.querySelector('#modifyUserData2Modal'),
+        userData2ModifyModalInit: new bootstrap.Modal('#modifyUserData2Modal', {
+        }),
+        openModal (testColumn1, testColumn2, testColumn3, testColumn4, id) {
+            
+            document.getElementById('routeFormModify').reset();
+
+            document.querySelector('#modifyTestColumn1').value = testColumn1;
+            document.querySelector('#modifyTestColumn2').value = testColumn2;
+            document.querySelector('#modifyTestColumn3').value = testColumn3;
+            document.querySelector('#modifyTestColumn4').value = testColumn4;
+            document.querySelector('#modifyUserData2Id').value = id;
+
+            $('#modifyUserData2Modal').modal('show');
+        },
+        async modifyUserData2() {
+            // const receiverMdn = document.querySelector('[name=modifyReceiverMdn]').value;
+            // const receiverName = document.querySelector('[name=modifyReceiverName]').value;
+            //
+            // if (!receiverMdn || !receiverName) {
+            //     alert('수신자 명, 수신자 전화번호는 필수 입력값입니다.');
+            // } else {
+            //     try {
+            //         const response = await ApiService.post('/api/sms/modifyUserData2', this.setModifyRequestData()).then(response=>{
+            //             if(ApiService.errorChk(response)){
+            //                 alert('SMS 알림 그룹 정보 변경이 완료되었습니다.');
+            //             }
+            //         })
+            //     } catch (err) {
+            //         return err
+            //     }
+            // }
+        },
+        setModifyRequestData () {
+            return {
+                receiverMdn: removeHypen(document.querySelector('[name=modifyReceiverMdn]').value),
+                receiverName: document.querySelector('[name=modifyReceiverName]').value,
+                activeYn: document.querySelector('[name=modifyActiveYn]').value,
+                smsSeq: document.querySelector('[name=modifySmsSeq]').value,
+            }
+        },
+    }
+    modifyUserData2Config.userData2ModifyModalInit;
 
 
 </script>

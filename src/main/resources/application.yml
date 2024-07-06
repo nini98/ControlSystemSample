@@ -4,6 +4,8 @@ server:
     encoding:
       charset: UTF-8
       force-response: true
+    session:
+      timeout: 20s
   tomcat:
     uri-encoding: UTF-8
 

@@ -15,7 +15,7 @@
         <result property="blockYn" column="BLOCK_YN"/>
     </resultMap>
 
-    <insert id="signup" parameterType="SignUpRequestDTO">
+    <insert id="insertUser" parameterType="SignUpRequestDTO">
         INSERT INTO user
             (LOGIN_ID,
              PASSWORD,

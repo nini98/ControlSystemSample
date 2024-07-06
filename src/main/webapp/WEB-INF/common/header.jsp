@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.min.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/base.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
+<%--    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/datatables.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/apexcharts.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/moment.min.js"></script>

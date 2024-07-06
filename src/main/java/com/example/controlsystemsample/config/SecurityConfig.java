@@ -1,6 +1,13 @@
 package com.example.controlsystemsample.config;
 
+import java.time.Duration;
+
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.ConfigurableTomcatWebServerFactory;
+import org.springframework.boot.web.server.ConfigurableWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,10 +15,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.example.controlsystemsample.security.CustomAuthenticationFailureHandler;
 import com.example.controlsystemsample.security.CustomAuthenticationSuccessHandler;
@@ -53,6 +62,13 @@ public class SecurityConfig {
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 			)
+			// .sessionManagement(sessionManagement ->
+			// 	sessionManagement
+			// 		.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+			// 		.invalidSessionUrl("/login")
+			// 		.sessionFixation().none()
+			// 		.maximumSessions(1).expiredUrl("/login")
+			// );
 			// .csrf(AbstractHttpConfigurer::disable)
 		;
 		return http.build();
@@ -75,4 +91,10 @@ public class SecurityConfig {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
+
+	// @Bean
+	// public HttpSessionEventPublisher httpSessionEventPublisher() {
+	// 	return new HttpSessionEventPublisher();
+	// }
+
 }
