@@ -15,6 +15,9 @@
         <button onclick="moveToDataTablePage()">DATA TABLE TEST PAGE</button>
         <button onclick="moveToDataTable2Page()">DATA TABLE 2 TEST PAGE</button>
         <button onclick="moveToRealTimeChartPage()">REAL-TIME CHART PAGE</button>
+        <br>
+        <br>
+        <button onclick="logOut()">로그아웃</button>
     </div>
 </div>
 
@@ -29,6 +32,17 @@
 
     const moveToDataTable2Page = () => {
         location.href = "/data-table-2";
+    }
+
+    const logOut = async () => {
+        try {
+            const response = await fetchUtil.postUrlEncoded('/logout', {});
+            alert("로그아웃 되었습니다.");
+            location.href = '/login';
+        } catch (error) {
+            console.error('Logout failed : ', error);
+            alert(error);
+        }
     }
 </script>
 

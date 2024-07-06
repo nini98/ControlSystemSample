@@ -19,5 +19,9 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/all.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/fetchUtil.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+
+    <!-- CSRF Token -->
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 <body>

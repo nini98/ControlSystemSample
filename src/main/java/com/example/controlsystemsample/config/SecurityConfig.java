@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.example.controlsystemsample.security.CustomAuthenticationFailureHandler;
 import com.example.controlsystemsample.security.CustomAuthenticationSuccessHandler;
+import com.example.controlsystemsample.security.CustomLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +25,7 @@ public class SecurityConfig {
 	private final UserDetailsService userDetailsService;
 	private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+	private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -40,15 +42,18 @@ public class SecurityConfig {
 					.loginPage("/login")
 					.usernameParameter("loginId") // 커스텀 로그인 필드 이름 설정
 					.passwordParameter("password")
-					.permitAll()
 					.successHandler(customAuthenticationSuccessHandler)
 					.failureHandler(customAuthenticationFailureHandler)
+					.permitAll()
 			)
 			.logout((logout) -> logout
+				.logoutUrl("/logout")
+				.logoutSuccessHandler(customLogoutSuccessHandler)
 				.logoutSuccessUrl("/login")
 				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
 			)
-			.csrf(AbstractHttpConfigurer::disable)
+			// .csrf(AbstractHttpConfigurer::disable)
 		;
 		return http.build();
 	}
