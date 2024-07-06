@@ -62,12 +62,12 @@
         FROM user_data_2
         WHERE DELETE_YN = 'N'
         <if test="testColumn1 != null and !testColumn1.isEmpty()">
-            AND TEST_COLUMN_1 = #{column1}
+            AND TEST_COLUMN_1 = #{testColumn1}
         </if>
         <if test="testColumn2 != null and !testColumn2.isEmpty()">
-            AND TEST_COLUMN_2 = #{column2}
+            AND TEST_COLUMN_2 = #{testColumn2}
         </if>
-        BETWEEN INSERT_DATE #{startDate} AND #{endDate}
+        AND INSERT_DATE BETWEEN #{startDate} AND #{endDate}
         LIMIT #{start}, #{length}
     </select>
 
@@ -76,12 +76,12 @@
         FROM user_data_2
         WHERE DELETE_YN = 'N'
         <if test="testColumn1 != null and !testColumn1.isEmpty()">
-            AND TEST_COLUMN_1 = #{column1}
+            AND TEST_COLUMN_1 = #{testColumn1}
         </if>
         <if test="testColumn2 != null and !testColumn2.isEmpty()">
-            AND TEST_COLUMN_2 = #{column2}
+            AND TEST_COLUMN_2 = #{testColumn2}
         </if>
-        BETWEEN INSERT_DATE #{startDate} AND #{endDate}
+        AND INSERT_DATE BETWEEN #{startDate} AND #{endDate}
         LIMIT #{start}, #{length}
     </select>
 </mapper>

@@ -3,7 +3,7 @@ const fetchUtil = {
     handleResponse: async (response) => {
         const jsonData = await response.json();
         if (!response.ok) {
-            const error = new Error('Network response was not ok');
+            const error = new Error(jsonData.header.resultMessage);
             error.header = jsonData.header;
             error.data = jsonData.data;
             throw error;
